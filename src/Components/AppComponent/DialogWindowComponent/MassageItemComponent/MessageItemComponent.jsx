@@ -1,9 +1,9 @@
 import './MessageItemComponent.scss'
 
 const MessageItemComponent = (props) => {
+    const {date, time, messageText, userImg, incomingStatus} = props;
     const incomingClass = 'messageItemComponent__position-left';
     const outgoingClass = 'messageItemComponent__position-right';
-    const {incomingStatus} = props;
     const messageClass = incomingStatus ? incomingClass : outgoingClass;
 
     return (
@@ -11,11 +11,11 @@ const MessageItemComponent = (props) => {
             <div className={'messageItemComponent__position-block'}>
                 {!incomingStatus ? null
                 : <div className={'messageItemComponent__photo'}>
-                        <img src="https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg" alt=""/>
+                        <img src={userImg} alt=""/>
                     </div>}
                 <div className={'messageItemComponent__content'}>
-                    <div className={'messageItemComponent__content-message'}>message</div>
-                    <div className={'messageItemComponent__content-date'}>date</div>
+                    <div className={'messageItemComponent__content-message'}>{messageText}</div>
+                    <div className={'messageItemComponent__content-date'}>{date} {time}</div>
                 </div>
             </div>
         </div>

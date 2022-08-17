@@ -1,9 +1,29 @@
 import DialogItemComponent from "./DialogItemComponent/DialogItemComponent";
 
 import './ChatsWindowComponent.scss'
+import data from "../../../dataMessage/dataMesasge";
 
 const ChatsWindowComponent = (props) => {
     const {dialogsItems} = props;
+
+    const chatsList = () => {
+
+    }
+
+    const items = data.users.map((el, i) => {
+        const lastMessage = el.messages.slice(-1)[0];
+        //доделать формат даты из милисекунд
+        /*const a = Date.now()
+        console.log(new Date())
+        console.log(a)
+        console.log(Intl.DateTimeFormat('ru').format(a))*/
+        return <DialogItemComponent key={i} lastMessageText={lastMessage.text}
+                                    user={el}
+                                    date={lastMessage.date}
+                                    userName={el.userName}
+                                    userImg={el.img}
+                                    openChat={props.openChat}/>
+    })
     return (
         <div className={'chatsWindow'}>
             <div className={'chatsWindow__header'}>
@@ -15,6 +35,7 @@ const ChatsWindowComponent = (props) => {
             <div>
                 <h3>Chats</h3>
                 <div>
+                    {items}
                     {/*{dialogsItems.map(el => {
                         return <DialogItemComponent name={'Maksym Novytskyi'}/>
                     })}*/}

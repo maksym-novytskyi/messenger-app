@@ -1,11 +1,10 @@
 import './DialogItemComponent.scss'
 
 const DialogItemComponent = (props) => {
-    const {lastMessageText, date, userName, userImg} = props;
+    const {lastMessageText, date, userName, userImg, openChat, user} = props;
     return (
-        <div className={'dialogItem'}>
+        <div className={'dialogItem'} onClick={() => openChat(user)}>
             <div>
-                {/*<img src="https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg" alt=""/>*/}
                 <img src={userImg} alt=""/>
             </div>
             <div>
