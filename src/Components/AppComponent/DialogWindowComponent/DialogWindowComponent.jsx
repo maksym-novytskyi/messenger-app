@@ -30,7 +30,7 @@ const DialogWindowComponent = (props) => {
                 {messagesElements}
             </div>
             <div className={'dialogWindow__footer'}>
-                <InputMessageComponent/>
+                <InputMessageComponent messages={messages}/>
             </div>
         </div>
     )

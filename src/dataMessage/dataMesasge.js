@@ -169,4 +169,3 @@ export default data;
 console.log(text);
 console.log(data);*/
 
-
