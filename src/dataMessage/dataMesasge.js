@@ -8,7 +8,7 @@ const data = {
             messages: [
                 {
                     messageId: '0',
-                    date: '1/08/22',
+                    date: '1660936627817',
                     time: '13:00',
                     text: 'один',
                     isRead: true,
@@ -16,7 +16,7 @@ const data = {
                 },
                 {
                     messageId: '1',
-                    date: '1/08/22',
+                    date: '1660936627817',
                     time: '13:01',
                     text: 'два',
                     isRead: true,
@@ -24,7 +24,7 @@ const data = {
                 },
                 {
                     messageId: '2',
-                    date: '1/08/22',
+                    date: '1660936627817',
                     time: '13:02',
                     text: 'три',
                     isRead: true,
@@ -40,7 +40,7 @@ const data = {
             messages: [
                 {
                     messageId: '0',
-                    date: '1/08/22',
+                    date: '1234567890',
                     time: '13:00',
                     text: 'один',
                     isRead: true,
@@ -48,7 +48,7 @@ const data = {
                 },
                 {
                     messageId: '1',
-                    date: '1/08/22',
+                    date: '1234567890',
                     time: '13:01',
                     text: 'два',
                     isRead: true,
@@ -56,7 +56,7 @@ const data = {
                 },
                 {
                     messageId: '2',
-                    date: '1/08/22',
+                    date: '1234567890',
                     time: '13:02',
                     text: 'три',
                     isRead: true,
@@ -159,7 +159,7 @@ const data = {
                     isIncoming: true
                 }
             ]
-        },
+        }
     ]
 }
 export default data;

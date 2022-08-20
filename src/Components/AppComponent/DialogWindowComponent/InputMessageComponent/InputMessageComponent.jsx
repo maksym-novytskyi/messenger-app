@@ -3,12 +3,12 @@ import sendImg from '../../../../images/send.png'
 import {useState} from "react";
 import {nanoid} from "nanoid";
 import {useHttp} from "../../../../hooks/http.hook";
+import {useDispatch} from "react-redux";
+import {addNewMessage} from "../../../../actions";
 
 
-const InputMessageComponent = ({messages}) => {
-    const [dataMessages, setDataMessages] = useState(messages)
+const InputMessageComponent = ({messages, updateMesseges}) => {
     const [inputValue, setInputValue] = useState('');
-    const [date, setDate] = useState(null);
 
     const {request} = useHttp();
 
@@ -28,24 +28,34 @@ const InputMessageComponent = ({messages}) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setDate(Date.now());
-        const {dateMessage, timeMessage} = formatDate(date);
+        const {dateMessage, timeMessage} = formatDate();
         const newMessage = {
             messageId: nanoid(),
-            date: date,
+            date: Date.now(),
             time: timeMessage,
             text: inputValue,
             isRead: true,
-            isIncoming: true
+            isIncoming: false
         }
         sendMessage(newMessage);
         setInputValue('');
     }
     const sendMessage = (message) => {
-        console.log('Отправленное имя: ' + inputValue);
+        console.log('Отправленное sms: ' + inputValue);
         console.log(message);
-        console.log(dataMessages);
-        setDataMessages(message)
+        updateMesseges(message);
+    }
+
+    const getMessage = () => {
+        const newMessage = {
+            messageId: nanoid(),
+            date: Date.now(),
+            //time: timeMessage,
+            text: inputValue,
+            isRead: true,
+            isIncoming: false
+        }
+
     }
     return (
         <div>

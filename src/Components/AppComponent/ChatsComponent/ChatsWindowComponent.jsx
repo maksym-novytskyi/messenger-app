@@ -4,22 +4,31 @@ import './ChatsWindowComponent.scss'
 import data from "../../../dataMessage/dataMesasge";
 
 const ChatsWindowComponent = (props) => {
-    const {dialogsItems} = props;
-
+    console.log(props)
     const chatsList = () => {
 
     }
-
-    const items = data.users.map((el, i) => {
+    const items = props.users.map((el, i) => {
         const lastMessage = el.messages.slice(-1)[0];
         //доделать формат даты из милисекунд
         /*const a = Date.now()
         console.log(new Date())
         console.log(a)
         console.log(Intl.DateTimeFormat('ru').format(a))*/
+        const formatDate = (mss) => {
+            const dateMessage = Intl.DateTimeFormat('ru').format(mss);
+            const days = parseInt(mss / (1000 * 60 * 60 * 24));
+            const hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = (mss % (1000 * 60)) / 1000;
+            //настроить AM/PM
+            const timeMessage = `${dateMessage}  ${hours}:${minutes}`
+            return {days, hours, minutes, seconds, dateMessage, timeMessage}
+        }
+        const  {timeMessage} = formatDate(lastMessage.date)
         return <DialogItemComponent key={i} lastMessageText={lastMessage.text}
                                     user={el}
-                                    date={lastMessage.date}
+                                    date={timeMessage}
                                     userName={el.userName}
                                     userImg={el.img}
                                     openChat={props.openChat}/>
@@ -39,10 +48,10 @@ const ChatsWindowComponent = (props) => {
                     {/*{dialogsItems.map(el => {
                         return <DialogItemComponent name={'Maksym Novytskyi'}/>
                     })}*/}
-                    <DialogItemComponent name={'Maksym Novytskyi'}/>
+                    {/*<DialogItemComponent name={'Maksym Novytskyi'}/>
                     <DialogItemComponent name={'Nikita'}/>
                     <DialogItemComponent name={'ANDREY'}/>
-                    <DialogItemComponent name={'TARAS'}/>
+                    <DialogItemComponent name={'TARAS'}/>*/}
                 </div>
             </div>
         </div>

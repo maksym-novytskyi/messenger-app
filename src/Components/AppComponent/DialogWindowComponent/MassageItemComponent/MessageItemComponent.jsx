@@ -15,7 +15,7 @@ const MessageItemComponent = (props) => {
                     </div>}
                 <div className={'messageItemComponent__content'}>
                     <div className={'messageItemComponent__content-message'}>{messageText}</div>
-                    <div className={'messageItemComponent__content-date'}>{date} {time}</div>
+                    <div className={'messageItemComponent__content-date'}>{time}</div>
                 </div>
             </div>
         </div>
