@@ -1,5 +1,6 @@
 const initialState = {
-    users: []
+    users: [],
+    getMessage: []
 }
 
 const usersReducer = (state = initialState, action) => {

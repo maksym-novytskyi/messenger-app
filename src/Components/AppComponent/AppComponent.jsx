@@ -13,7 +13,7 @@ const AppComponent = () => {
     const [userActive, setUserActive] = useState();
     const [messages, setMessages] = useState();
 
-    const users = useSelector(state => {
+    const sortingUsers = (state) => {
         const arrOfDate = state.usersReducer.users.map(el => +el.messages.slice(-1)[0].date);
         const sortDate = arrOfDate.sort((a, b) => b - a);
         const sortUsers = sortDate.map(d => {
@@ -21,17 +21,21 @@ const AppComponent = () => {
         })
         console.log(sortUsers.flat())
         return sortUsers.flat()
-    });
+    }
+
+    const users = useSelector(state => sortingUsers(state));
     const dispatch = useDispatch();
     const {request} = useHttp();
 
     useEffect(() => {
         dispatch(fetchUsers(request));
-    }, [])
+    }, [request])
 
     /*const updateUsers = (data) => {
         setUsers(data);
     }*/
+
+
 
     const openChat = (user) => {
         console.log(user);
@@ -51,10 +55,21 @@ const AppComponent = () => {
             .then(dispatch(usersUpdated(userActive)))
             .catch(err => console.log(err));
     }
+    const updateGetMessages = (newMessage,newGetMessage) => {
+        console.log("messages");
+        console.log(messages);
+        setMessages([...messages, newMessage, newGetMessage]);
+
+        userActive.messages = [...messages, newMessage, newGetMessage]
+        request(`http://localhost:3001/users/${userActive.id}`, "PUT", JSON.stringify(userActive))
+            .then(res => console.log(res, 'Отправка успешна'))
+            .then(dispatch(usersUpdated(userActive)))
+            .catch(err => console.log(err));
+    }
     return (
         <div className={'appComponent'}>
             <ChatsWindowComponent isOnline={true} openChat={openChat} users={users}/>
-            {userActive ? <DialogWindowComponent updateMesseges={updateMessages} messages={messages} userActive={userActive} /> : 'Choose dialog'}
+            {userActive ? <DialogWindowComponent updateMesseges={updateMessages} updateGetMessages={updateGetMessages} messages={messages} userActive={userActive} /> : 'Choose dialog'}
         </div>
     );
 }

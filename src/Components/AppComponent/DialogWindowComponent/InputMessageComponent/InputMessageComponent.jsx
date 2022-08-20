@@ -4,10 +4,10 @@ import {useState} from "react";
 import {nanoid} from "nanoid";
 import {useHttp} from "../../../../hooks/http.hook";
 import {useDispatch} from "react-redux";
-import {addNewMessage} from "../../../../actions";
+import {addNewMessage, usersFetched} from "../../../../actions";
 
 
-const InputMessageComponent = ({messages, updateMesseges}) => {
+const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) => {
     const [inputValue, setInputValue] = useState('');
 
     const {request} = useHttp();
@@ -15,38 +15,10 @@ const InputMessageComponent = ({messages, updateMesseges}) => {
     const handleChange = (e) => {
         setInputValue(e.target.value)
     }
-    //Форматировать будем в другой компоненте, по факту рендеринга
-    const formatDate = (mss) => {
-        const dateMessage = Intl.DateTimeFormat('ru').format(mss);
-        const days = parseInt(mss / (1000 * 60 * 60 * 24));
-        const hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = (mss % (1000 * 60)) / 1000;
-        //настроить AM/PM
-        const timeMessage = `${hours}:${minutes}`
-        return {days, hours, minutes, seconds, dateMessage, timeMessage}
-    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const {dateMessage, timeMessage} = formatDate();
-        const newMessage = {
-            messageId: nanoid(),
-            date: Date.now(),
-            time: timeMessage,
-            text: inputValue,
-            isRead: true,
-            isIncoming: false
-        }
-        sendMessage(newMessage);
-        setInputValue('');
-    }
-    const sendMessage = (message) => {
-        console.log('Отправленное sms: ' + inputValue);
-        console.log(message);
-        updateMesseges(message);
-    }
-
-    const getMessage = () => {
+        //const {dateMessage, timeMessage} = formatDate();
         const newMessage = {
             messageId: nanoid(),
             date: Date.now(),
@@ -55,7 +27,32 @@ const InputMessageComponent = ({messages, updateMesseges}) => {
             isRead: true,
             isIncoming: false
         }
+        sendMessage(newMessage);
+        setInputValue('');
+        setTimeout(() => {
+            request("https://api.chucknorris.io/jokes/random")
+                .then(data => {
+                        getMessage(data.value, newMessage)
+                })
+        }, 10000);
 
+    }
+    const sendMessage = (message) => {
+        console.log('Отправленное sms: ' + inputValue);
+        console.log(message);
+        updateMesseges(message);
+    }
+
+    const getMessage = (textValue, newMessage) => {
+        const newGetMessage = {
+            messageId: nanoid(),
+            date: Date.now(),
+            //time: timeMessage,
+            text: textValue,
+            isRead: true,
+            isIncoming: true
+        }
+        updateGetMessages(newMessage, newGetMessage)
     }
     return (
         <div>

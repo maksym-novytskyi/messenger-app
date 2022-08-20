@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "1",
-      "userName": "Maksym Novytskyiiiii",
+      "userName": "Maksym Novytskyi",
       "img": "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
       "isOnline": true,
       "messages": [
@@ -29,70 +29,6 @@
           "text": "три",
           "isRead": true,
           "isIncoming": true
-        },
-        {
-          "messageId": "J8aq6nQmcg9Bm7uKULsxF",
-          "date": 1660957853757,
-          "time": "NaN:NaN",
-          "text": "ASDFA",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
-          "messageId": "tKtMnCC-bzec0b7So7-ff",
-          "date": 1660957871925,
-          "time": "NaN:NaN",
-          "text": "QWAS",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
-          "messageId": "k2z30esR5lfhHB1lXHUZf",
-          "date": 1660958035689,
-          "time": "NaN:NaN",
-          "text": "DFR",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
-          "messageId": "unbI8uyN90x6amPL0ttKg",
-          "date": 1660958142819,
-          "time": "NaN:NaN",
-          "text": "sdfrt",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
-          "messageId": "v1cv7YYYQJF1nxXtZ_wz1",
-          "date": 1660962574507,
-          "time": "NaN:NaN",
-          "text": "1",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
-          "messageId": "K-3hODMJu7URrDs-Ftaj0",
-          "date": 1660962903336,
-          "time": "NaN:NaN",
-          "text": "sdf",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
-          "messageId": "yVSQZTV7rprBaPuQkQQGz",
-          "date": 1661010408805,
-          "time": "NaN:NaN",
-          "text": "шо ты там",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
-          "messageId": "C29jdX5jNhGDAkdISuUWt",
-          "date": 1661010642221,
-          "time": "NaN:NaN",
-          "text": "ываыавтышоаыгватгываот",
-          "isRead": true,
-          "isIncoming": false
         }
       ]
     },
@@ -127,26 +63,10 @@
           "isIncoming": true
         },
         {
-          "messageId": "WbNIki_r6JeLZTKmtf-ND",
-          "date": 1660958051144,
-          "time": "NaN:NaN",
-          "text": "ASDF",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
           "messageId": "Ie14YfnBxKgJ-uab7fk9z",
           "date": 1660962578656,
           "time": "NaN:NaN",
           "text": "2",
-          "isRead": true,
-          "isIncoming": false
-        },
-        {
-          "messageId": "oWpp6Ih_Xbco74MEoV_4T",
-          "date": 1660962899685,
-          "time": "NaN:NaN",
-          "text": "sdf",
           "isRead": true,
           "isIncoming": false
         }
@@ -274,7 +194,7 @@
     },
     {
       "id": "5",
-      "userName": "Andrey Lanin",
+      "userName": "Anna Filatova",
       "img": "https://www.w3schools.com/howto/img_avatar.png",
       "isOnline": true,
       "messages": [

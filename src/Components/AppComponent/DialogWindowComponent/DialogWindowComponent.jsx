@@ -6,7 +6,7 @@ import './DialogWindowComponent.scss'
 
 const DialogWindowComponent = (props) => {
     const {userName, isOnline, img} = props.userActive;
-    const {messages, updateMesseges} = props;
+    const {messages, updateMesseges, updateGetMessages} = props;
 
     const messagesElements = messages.map((m, i) => {
         const formatDate = (mss) => {
@@ -42,7 +42,7 @@ const DialogWindowComponent = (props) => {
                 {messagesElements}
             </div>
             <div className={'dialogWindow__footer'}>
-                <InputMessageComponent updateMesseges={updateMesseges} messages={messages}/>
+                <InputMessageComponent updateMesseges={updateMesseges} updateGetMessages={updateGetMessages} messages={messages}/>
             </div>
         </div>
     )
