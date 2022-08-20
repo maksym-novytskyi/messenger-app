@@ -229,6 +229,20 @@
           "text": "5",
           "isRead": true,
           "isIncoming": false
+        },
+        {
+          "messageId": "WrDPwLijVDhJfNUV7fWOs",
+          "date": 1661037172859,
+          "text": "1",
+          "isRead": true,
+          "isIncoming": false
+        },
+        {
+          "messageId": "fMkMroAZgUVDd3V_6XRLI",
+          "date": 1661037183402,
+          "text": "Chuck Norris' mother once caught him masticating a horse in his bedroom.",
+          "isRead": true,
+          "isIncoming": true
         }
       ]
     }

@@ -12,6 +12,7 @@ const AppComponent = () => {
     //const [users, setUsers] = useState(data);
     const [userActive, setUserActive] = useState();
     const [messages, setMessages] = useState();
+    const [term, setTerm] = useState('');
 
     const sortingUsers = (state) => {
         const arrOfDate = state.usersReducer.users.map(el => +el.messages.slice(-1)[0].date);
@@ -20,9 +21,22 @@ const AppComponent = () => {
             return state.usersReducer.users.filter(u => +u.messages.slice(-1)[0].date === d);
         })
         console.log(sortUsers.flat())
-        return sortUsers.flat()
+        return searchUsers(sortUsers.flat(), term);
     }
 
+     const searchUsers = (items, term) => {
+        if (term.length === 0) {
+            return items;
+        }
+
+        return items.filter(item => {
+            return item.userName.toLowerCase().indexOf(term.toLowerCase()) > -1
+        })
+    }
+
+    const onUpdateSearch = (term) => {
+        setTerm(term);
+    }
     const users = useSelector(state => sortingUsers(state));
     const dispatch = useDispatch();
     const {request} = useHttp();
@@ -68,7 +82,7 @@ const AppComponent = () => {
     }
     return (
         <div className={'appComponent'}>
-            <ChatsWindowComponent isOnline={true} openChat={openChat} users={users}/>
+            <ChatsWindowComponent onUpdateSearch={onUpdateSearch} isOnline={true} openChat={openChat} users={users}/>
             {userActive ? <DialogWindowComponent updateMesseges={updateMessages} updateGetMessages={updateGetMessages} messages={messages} userActive={userActive} /> : 'Choose dialog'}
         </div>
     );

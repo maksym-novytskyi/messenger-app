@@ -2,11 +2,18 @@ import DialogItemComponent from "./DialogItemComponent/DialogItemComponent";
 
 import './ChatsWindowComponent.scss'
 import data from "../../../dataMessage/dataMesasge";
+import {useState} from "react";
 
 const ChatsWindowComponent = (props) => {
     console.log(props)
     const chatsList = () => {
 
+    }
+    const [term, setTerm] = useState('');
+    const onUpdateSearch = (e) => {
+        const term = e.target.value;
+        setTerm(term);
+        props.onUpdateSearch(term)
     }
     const items = props.users.map((el, i) => {
         const lastMessage = el.messages.slice(-1)[0];
@@ -39,7 +46,7 @@ const ChatsWindowComponent = (props) => {
                 <div>
                     <img src="https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg" alt=""/>
                 </div>
-                <input type="text" placeholder={'Search friend'} className={'search'}/>
+                <input type="text" placeholder={'Search friend'} className={'search'} onChange={onUpdateSearch} value={term}/>
             </div>
             <div>
                 <h3>Chats</h3>
