@@ -1,9 +1,11 @@
-$color-grey: #f5f5f5;
+$color-grey-chats-header: #f5f5f5;
 .chatsWindow {
     //display: grid;
     //grid-template-rows: 1fr 10fr;
     background-color: white;
     border-right: 1px solid gray;
+    width: 30%;
+    height: 100%;
     img {
         margin: 10px;
         width: 40px;
@@ -16,21 +18,23 @@ $color-grey: #f5f5f5;
         color: cornflowerblue;
     }
     .chatsWindow__header {
-        background-color: $color-grey;
+        background-color: $color-grey-chats-header;
         border-bottom: 3px solid gray;
-        //margin-bottom: 10px;
-
+        //height: 150px;
+        //height: 10%;
         .search {
-            align-items: center;
-            border-radius: 10px;
+            //align-items: center;
+            border-radius: 20px;
+            border: 1px solid;
             margin: 10px;
             box-sizing: border-box;
             width: calc(100% - 20px);
+            height: 35px;
         }
     }
     .chatsWindow__body {
-        //border: 5px solid green;
-        height: 500px;
-        overflow: auto;
+        min-height: 100px;
+        max-height: 600px;
+        overflow: scroll;
     }
 }

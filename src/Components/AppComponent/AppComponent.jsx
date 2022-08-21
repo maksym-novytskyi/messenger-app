@@ -1,9 +1,10 @@
 import ChatsWindowComponent from "./ChatsComponent/ChatsWindowComponent";
 import DialogWindowComponent from "./DialogWindowComponent/DialogWindowComponent";
+import notificationSound from '../../notificationSound.mp3'
 import data from "../../dataMessage/dataMesasge";
 
 import './AppComponent.scss'
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useHttp} from "../../hooks/http.hook";
 import {fetchUsers, usersUpdated} from "../../actions";
 import {useDispatch, useSelector} from "react-redux";
@@ -16,6 +17,11 @@ const AppComponent = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+    const audioPlayer = useRef(null);
+    const playAudio = () => {
+        audioPlayer.current.currentTime = 0;
+        audioPlayer.current.play();
+    }
 
     const sortingUsers = (state) => {
         const arrOfDate = state.usersReducer.users.map(el => +el.messages.slice(-1)[0].date);
@@ -82,23 +88,15 @@ const AppComponent = () => {
             .then(res => console.log(res, 'Отправка успешна'))
             .then(dispatch(usersUpdated(userActive)))
             .catch(err => console.log(err));
+        playAudio();
     }
     return (
         <div className={'appComponent'}>
+            <audio src={notificationSound} ref={audioPlayer}/>
             <ChatsWindowComponent onUpdateSearch={onUpdateSearch} isOnline={true} openChat={openChat} users={users}/>
-            {userActive ? <DialogWindowComponent updateMesseges={updateMessages} updateGetMessages={updateGetMessages} messages={messages} userActive={userActive} /> : 'Choose dialog'}
+            {userActive ? <DialogWindowComponent updateMesseges={updateMessages} updateGetMessages={updateGetMessages} messages={messages} userActive={userActive} /> : <div>Choose dialog</div> }
         </div>
     );
 }
 
 export default AppComponent;
-
-/*
-* const arrOfDate = state.usersReducer.users.map(el => el.date);
-* const arrOfDate = state.usersReducer.users.map(el => +el.messages.slice(-1)[0].date);
-        const sortDate = arrOfDate.sort((a, b) => b - a);
-        return sortDate.map(d => {
-            return state.usersReducer.users.filter(u => +u.messages.slice(-1)[0].date === d);
-           })
-        return state.usersReducer.users.filter((u, i) => +u.messages.slice(-1)[0].date === sortDate[i])
-        })*/

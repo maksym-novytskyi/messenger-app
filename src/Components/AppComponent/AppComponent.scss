@@ -1,5 +1,14 @@
 .appComponent {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  min-height: 500px;
+ /* display: grid;
+  grid-template-areas:
+  "header-chats header-dialogs"
+  "chats dialogs";*/
+  /*grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 2fr;*/
+  //height: 100%;
+  //height: 1000px;
+  display: flex;
+  flex-direction: row;
+  min-height: 100px;
+  max-height: 1000px;
 }

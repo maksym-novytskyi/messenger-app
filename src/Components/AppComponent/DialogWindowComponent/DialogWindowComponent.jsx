@@ -1,6 +1,7 @@
 import MessageItemComponent from "./MassageItemComponent/MessageItemComponent";
 import InputMessageComponent from "./InputMessageComponent/InputMessageComponent";
 import onlineStatusImg from './../../../images/onlineStatus.png'
+import moment from 'moment-timezone'
 
 import './DialogWindowComponent.scss'
 import {useEffect, useRef} from "react";
@@ -14,18 +15,16 @@ const DialogWindowComponent = (props) => {
     }
     console.log('render')
     useEffect(() => {
-        //scroll();
+        scroll();
     })
     const messagesElements = messages.map((m, i) => {
         const formatDate = (mss) => {
-            //const mss = ms + 10800000;
-            const dateMessage = Intl.DateTimeFormat('ru').format(mss);
-            const days = parseInt(mss / (1000 * 60 * 60 * 24));
-            const hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = (mss % (1000 * 60)) / 1000;
-            //настроить AM/PM
-            const timeMessage = `${dateMessage}  ${hours}:${minutes}`
+            const dateMessage = moment(mss).format("DD.MM.YYYY");
+            const days = moment(mss).format("D");
+            const hours = moment(mss).format("H");
+            const minutes = moment(mss).format("mm");
+            const seconds = moment(mss).format("ss");
+            const timeMessage = moment(mss).format("M/DD/YYYY, H:mm A");
             return {days, hours, minutes, seconds, dateMessage, timeMessage}
         }
         const  {timeMessage} = formatDate(m.date)

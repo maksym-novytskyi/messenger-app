@@ -5,6 +5,7 @@ import {nanoid} from "nanoid";
 import {useHttp} from "../../../../hooks/http.hook";
 import {useDispatch} from "react-redux";
 import {addNewMessage, usersFetched} from "../../../../actions";
+import moment from "moment-timezone";
 
 
 const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) => {
@@ -21,7 +22,7 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
         //const {dateMessage, timeMessage} = formatDate();
         const newMessage = {
             messageId: nanoid(),
-            date: Date.now(),
+            date: Number(moment().tz("Europe/Istanbul").format('x')),
             //time: timeMessage,
             text: inputValue,
             isRead: true,
@@ -46,7 +47,7 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
     const getMessage = (textValue, newMessage) => {
         const newGetMessage = {
             messageId: nanoid(),
-            date: Date.now(),
+            date: Number(moment().tz("Europe/Istanbul").format('x')),
             //time: timeMessage,
             text: textValue,
             isRead: true,
@@ -66,10 +67,12 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
                 <div className={'inputMessageComponent'}>
                     <input  placeholder={'Write new message..'} type="text" value={inputValue} onChange={handleChange}/>
                     {/*<input type="submit" value="Отправить"/>*/}
-                    {/*<button type="submit" value="Отправить"><img src={sendImg}/></button>*/}
+                    <button type="submit" value="Отправить"><img src={sendImg}/></button>
                     {/*<span type="submit"><img src={sendImg} /></span>*/}
                     {/*<img src={sendImg} type="submit"/>*/}
-                    <input type="submit"/>
+                    {/*<div><img src={sendImg} type="submit"/></div>*/}
+                    {/*<input type="submit"/>*/}
+                    {/*<input className={'input'} type="image" src={sendImg}/>*/}
                 </div>
             </form>
         </div>

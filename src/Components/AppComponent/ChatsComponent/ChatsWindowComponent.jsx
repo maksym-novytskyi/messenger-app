@@ -3,6 +3,7 @@ import DialogItemComponent from "./DialogItemComponent/DialogItemComponent";
 import './ChatsWindowComponent.scss'
 import data from "../../../dataMessage/dataMesasge";
 import {useEffect, useRef, useState} from "react";
+import moment from "moment-timezone";
 
 const ChatsWindowComponent = (props) => {
     console.log(props)
@@ -11,12 +12,12 @@ const ChatsWindowComponent = (props) => {
     }
     const [term, setTerm] = useState('');
     const bodyChats = useRef(null);
-    const scroll = () => {
-        bodyChats.current.scrollIntoView({behavior: "smooth"} );
+    const scrolls = () => {
+        bodyChats.current.scrollIntoView({top: true} );
     }
 
     useEffect(() => {
-        scroll();
+        scrolls();
     })
 
     const onUpdateSearch = (e) => {
@@ -32,13 +33,13 @@ const ChatsWindowComponent = (props) => {
         console.log(a)
         console.log(Intl.DateTimeFormat('ru').format(a))*/
         const formatDate = (mss) => {
-            const dateMessage = Intl.DateTimeFormat('ru').format(mss);
-            const days = parseInt(mss / (1000 * 60 * 60 * 24));
-            const hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = (mss % (1000 * 60)) / 1000;
-            //настроить AM/PM
-            const timeMessage = `${dateMessage}  ${hours}:${minutes}`
+            const dateMessage = moment(mss).format("MMM DD, YYYY");
+            const days = moment(mss).format("D");
+            const hours = moment(mss).format("H");
+            const minutes = moment(mss).format("mm");
+            const seconds = moment(mss).format("ss");
+            const timeMessage = moment(mss).format("MMM DD, YYYY")
+
             return {days, hours, minutes, seconds, dateMessage, timeMessage}
         }
         const  {timeMessage} = formatDate(lastMessage.date)
