@@ -3,13 +3,22 @@ import InputMessageComponent from "./InputMessageComponent/InputMessageComponent
 import onlineStatusImg from './../../../images/onlineStatus.png'
 
 import './DialogWindowComponent.scss'
+import {useEffect, useRef} from "react";
 
 const DialogWindowComponent = (props) => {
     const {userName, isOnline, img} = props.userActive;
     const {messages, updateMesseges, updateGetMessages} = props;
-
+    const bodyMessages = useRef(null);
+    const scroll = () => {
+    bodyMessages.current.scrollIntoView({behavior: "smooth"} );
+    }
+    console.log('render')
+    useEffect(() => {
+        //scroll();
+    })
     const messagesElements = messages.map((m, i) => {
         const formatDate = (mss) => {
+            //const mss = ms + 10800000;
             const dateMessage = Intl.DateTimeFormat('ru').format(mss);
             const days = parseInt(mss / (1000 * 60 * 60 * 24));
             const hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -39,7 +48,8 @@ const DialogWindowComponent = (props) => {
                 </div>
             </div>
             <div className={'dialogWindow__body'}>
-                {messagesElements}
+                <div>{messagesElements}</div>
+                <div ref={bodyMessages}></div>
             </div>
             <div className={'dialogWindow__footer'}>
                 <InputMessageComponent updateMesseges={updateMesseges} updateGetMessages={updateGetMessages} messages={messages}/>

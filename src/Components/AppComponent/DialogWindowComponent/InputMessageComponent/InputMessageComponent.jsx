@@ -34,7 +34,7 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
                 .then(data => {
                         getMessage(data.value, newMessage)
                 })
-        }, 10000);
+        }, 3000);
 
     }
     const sendMessage = (message) => {

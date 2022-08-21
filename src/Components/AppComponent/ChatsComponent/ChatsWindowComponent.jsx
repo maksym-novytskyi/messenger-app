@@ -2,7 +2,7 @@ import DialogItemComponent from "./DialogItemComponent/DialogItemComponent";
 
 import './ChatsWindowComponent.scss'
 import data from "../../../dataMessage/dataMesasge";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 const ChatsWindowComponent = (props) => {
     console.log(props)
@@ -10,6 +10,15 @@ const ChatsWindowComponent = (props) => {
 
     }
     const [term, setTerm] = useState('');
+    const bodyChats = useRef(null);
+    const scroll = () => {
+        bodyChats.current.scrollIntoView({behavior: "smooth"} );
+    }
+
+    useEffect(() => {
+        scroll();
+    })
+
     const onUpdateSearch = (e) => {
         const term = e.target.value;
         setTerm(term);
@@ -48,7 +57,8 @@ const ChatsWindowComponent = (props) => {
                 </div>
                 <input type="text" placeholder={'Search friend'} className={'search'} onChange={onUpdateSearch} value={term}/>
             </div>
-            <div>
+            <div  className={'chatsWindow__body'}>
+                <div ref={bodyChats}></div>
                 <h3>Chats</h3>
                 <div>
                     {items}

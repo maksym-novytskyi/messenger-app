@@ -1,5 +1,7 @@
 $color-grey: #f5f5f5;
 .chatsWindow {
+    //display: grid;
+    //grid-template-rows: 1fr 10fr;
     background-color: white;
     border-right: 1px solid gray;
     img {
@@ -16,7 +18,7 @@ $color-grey: #f5f5f5;
     .chatsWindow__header {
         background-color: $color-grey;
         border-bottom: 3px solid gray;
-        margin-bottom: 10px;
+        //margin-bottom: 10px;
 
         .search {
             align-items: center;
@@ -26,5 +28,9 @@ $color-grey: #f5f5f5;
             width: calc(100% - 20px);
         }
     }
-
+    .chatsWindow__body {
+        //border: 5px solid green;
+        height: 500px;
+        overflow: auto;
+    }
 }

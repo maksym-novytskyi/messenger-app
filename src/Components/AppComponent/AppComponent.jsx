@@ -13,6 +13,9 @@ const AppComponent = () => {
     const [userActive, setUserActive] = useState();
     const [messages, setMessages] = useState();
     const [term, setTerm] = useState('');
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const sortingUsers = (state) => {
         const arrOfDate = state.usersReducer.users.map(el => +el.messages.slice(-1)[0].date);
