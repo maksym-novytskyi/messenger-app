@@ -57,22 +57,10 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
     }
     return (
         <div>
-            {/*<form >
-                <div className={'inputMessageComponent'}>
-                    <input type="text" placeholder={'Write new message..'}/>
-                    <button onClick={sendMessage}><img src={sendImg} alt=""/></button>
-                </div>
-            </form>*/}
             <form onSubmit={handleSubmit}>
                 <div className={'inputMessageComponent'}>
-                    <input  placeholder={'Write new message..'} type="text" value={inputValue} onChange={handleChange}/>
-                    {/*<input type="submit" value="Отправить"/>*/}
-                    <button type="submit" value="Отправить"><img src={sendImg}/></button>
-                    {/*<span type="submit"><img src={sendImg} /></span>*/}
-                    {/*<img src={sendImg} type="submit"/>*/}
-                    {/*<div><img src={sendImg} type="submit"/></div>*/}
-                    {/*<input type="submit"/>*/}
-                    {/*<input className={'input'} type="image" src={sendImg}/>*/}
+                    <input placeholder={'Write new message..'} type="text" value={inputValue} onChange={handleChange}/>
+                    <button disabled={!inputValue} type="submit" value="Отправить"><img src={sendImg}/></button>
                 </div>
             </form>
         </div>

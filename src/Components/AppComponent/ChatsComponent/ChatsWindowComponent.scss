@@ -1,7 +1,5 @@
-$color-grey-chats-header: #f5f5f5;
+$color-grey-chats-header: #f5f3f3;
 .chatsWindow {
-    //display: grid;
-    //grid-template-rows: 1fr 10fr;
     background-color: white;
     border-right: 1px solid gray;
     width: 30%;
@@ -11,7 +9,6 @@ $color-grey-chats-header: #f5f5f5;
         width: 40px;
         height: 40px;
         border-radius: 40px;
-        //float: left;
     }
     h3{
         margin-left: 10px;
@@ -20,20 +17,43 @@ $color-grey-chats-header: #f5f5f5;
     .chatsWindow__header {
         background-color: $color-grey-chats-header;
         border-bottom: 3px solid gray;
-        //height: 150px;
-        //height: 10%;
-        .search {
-            //align-items: center;
-            border-radius: 20px;
-            border: 1px solid;
-            margin: 10px;
-            box-sizing: border-box;
-            width: calc(100% - 20px);
-            height: 35px;
+
+        .searchWrapper {
+            position: relative;
+
+            .searchImg {
+                position: absolute;
+                padding: 10px 8px;
+                width: 15px;
+                height: 15px;
+            }
+
+            .search {
+                padding-left: 25px;
+                //align-items: center;
+                border-radius: 20px;
+                border: 1px solid;
+                margin: 10px;
+                box-sizing: border-box;
+                width: calc(100% - 20px);
+                height: 35px;
+            }
+        }
+        .chatsWindow__header-myAvatar{
+            position: relative;
+            width: 65px;
+            height: 65px;
+            .online{
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                height: 20px;
+                width: 20px;
+            }
         }
     }
     .chatsWindow__body {
-        min-height: 100px;
+        min-height: 600px;
         max-height: 600px;
         overflow: scroll;
     }

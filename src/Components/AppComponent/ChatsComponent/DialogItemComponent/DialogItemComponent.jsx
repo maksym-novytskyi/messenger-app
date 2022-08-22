@@ -1,11 +1,13 @@
 import './DialogItemComponent.scss'
+import onlineStatusImg from "../../../../images/onlineStatus.png";
 
 const DialogItemComponent = (props) => {
-    const {lastMessageText, date, userName, userImg, openChat, user} = props;
+    const {lastMessageText, date, userName, userImg, openChat, user, isOnline} = props;
     return (
         <div className={'dialogItem'} onClick={() => openChat(user)}>
-            <div>
-                <img src={userImg} alt=""/>
+            <div className={'dialogItem_companionAvatar'}>
+                <img src={userImg} alt="avatar"/>
+                {isOnline ? <img className={'online'} src={onlineStatusImg} alt="online"/> : null}
             </div>
             <div>
                 <div>{userName}</div>

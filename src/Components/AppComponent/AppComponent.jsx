@@ -94,7 +94,11 @@ const AppComponent = () => {
         <div className={'appComponent'}>
             <audio src={notificationSound} ref={audioPlayer}/>
             <ChatsWindowComponent onUpdateSearch={onUpdateSearch} isOnline={true} openChat={openChat} users={users}/>
-            {userActive ? <DialogWindowComponent updateMesseges={updateMessages} updateGetMessages={updateGetMessages} messages={messages} userActive={userActive} /> : <div>Choose dialog</div> }
+            {userActive ? <DialogWindowComponent updateMesseges={updateMessages}
+                                                 updateGetMessages={updateGetMessages}
+                                                 messages={messages}
+                                                 userActive={userActive} />
+                : <div className={'chooseDialog'}><h3>Select a chat to start messaging</h3></div> }
         </div>
     );
 }
