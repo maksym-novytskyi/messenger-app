@@ -10,11 +10,11 @@ const DialogItemComponent = (props) => {
                 {isOnline ? <img className={'online'} src={onlineStatusImg} alt="online"/> : null}
             </div>
             <div>
-                <div>{userName}</div>
+                <div className={'dialogItem__name'}><b>{userName}</b></div>
                 <div>{lastMessageText}</div>
             </div>
             <div>
-                {date}
+                <b>{date}</b>
             </div>
 
         </div>

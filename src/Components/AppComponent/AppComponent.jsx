@@ -1,7 +1,6 @@
 import ChatsWindowComponent from "./ChatsComponent/ChatsWindowComponent";
 import DialogWindowComponent from "./DialogWindowComponent/DialogWindowComponent";
 import notificationSound from '../../notificationSound.mp3'
-import data from "../../dataMessage/dataMesasge";
 
 import './AppComponent.scss'
 import {useEffect, useRef, useState} from "react";

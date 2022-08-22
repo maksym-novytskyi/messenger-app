@@ -1,7 +1,6 @@
 import DialogItemComponent from "./DialogItemComponent/DialogItemComponent";
 import searchImg from '../../../images/searchImg.png'
 import './ChatsWindowComponent.scss'
-import data from "../../../dataMessage/dataMesasge";
 import {useEffect, useRef, useState} from "react";
 import moment from "moment-timezone";
 import onlineStatusImg from "../../../images/onlineStatus.png";

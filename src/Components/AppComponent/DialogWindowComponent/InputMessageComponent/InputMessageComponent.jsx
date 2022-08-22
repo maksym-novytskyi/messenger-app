@@ -3,8 +3,6 @@ import sendImg from '../../../../images/send.png'
 import {useState} from "react";
 import {nanoid} from "nanoid";
 import {useHttp} from "../../../../hooks/http.hook";
-import {useDispatch} from "react-redux";
-import {addNewMessage, usersFetched} from "../../../../actions";
 import moment from "moment-timezone";
 
 
@@ -19,7 +17,6 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //const {dateMessage, timeMessage} = formatDate();
         const newMessage = {
             messageId: nanoid(),
             date: Number(moment().tz("Europe/Istanbul").format('x')),
@@ -35,7 +32,7 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
                 .then(data => {
                         getMessage(data.value, newMessage)
                 })
-        }, 3000);
+        }, 1000);
 
     }
     const sendMessage = (message) => {
@@ -48,7 +45,6 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
         const newGetMessage = {
             messageId: nanoid(),
             date: Number(moment().tz("Europe/Istanbul").format('x')),
-            //time: timeMessage,
             text: textValue,
             isRead: true,
             isIncoming: true
