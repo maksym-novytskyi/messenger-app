@@ -9,7 +9,6 @@ import {fetchUsers, usersUpdated} from "../../actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const AppComponent = () => {
-    //const [users, setUsers] = useState(data);
     const [userActive, setUserActive] = useState();
     const [messages, setMessages] = useState();
     const [term, setTerm] = useState('');
@@ -28,11 +27,10 @@ const AppComponent = () => {
         const sortUsers = sortDate.map(d => {
             return state.usersReducer.users.filter(u => +u.messages.slice(-1)[0].date === d);
         })
-        console.log(sortUsers.flat())
         return searchUsers(sortUsers.flat(), term);
     }
 
-     const searchUsers = (items, term) => {
+    const searchUsers = (items, term) => {
         if (term.length === 0) {
             return items;
         }
@@ -53,38 +51,22 @@ const AppComponent = () => {
         dispatch(fetchUsers(request));
     }, [request])
 
-    /*const updateUsers = (data) => {
-        setUsers(data);
-    }*/
-
-
-
     const openChat = (user) => {
-        console.log(user);
         setUserActive(user);
         setMessages(user.messages);
-        console.log(messages);
     }
 
     const updateMessages = (newMessage) => {
-        console.log("messages");
-        console.log(messages);
         setMessages([...messages, newMessage]);
-
         userActive.messages = [...messages, newMessage]
         request(`http://localhost:3001/users/${userActive.id}`, "PUT", JSON.stringify(userActive))
-            .then(res => console.log(res, 'Отправка успешна'))
             .then(dispatch(usersUpdated(userActive)))
             .catch(err => console.log(err));
     }
-    const updateGetMessages = (newMessage,newGetMessage) => {
-        console.log("messages");
-        console.log(messages);
+    const updateGetMessages = (newMessage, newGetMessage) => {
         setMessages([...messages, newMessage, newGetMessage]);
-
         userActive.messages = [...messages, newMessage, newGetMessage]
         request(`http://localhost:3001/users/${userActive.id}`, "PUT", JSON.stringify(userActive))
-            .then(res => console.log(res, 'Отправка успешна'))
             .then(dispatch(usersUpdated(userActive)))
             .catch(err => console.log(err));
         playAudio();
@@ -96,8 +78,8 @@ const AppComponent = () => {
             {userActive ? <DialogWindowComponent updateMesseges={updateMessages}
                                                  updateGetMessages={updateGetMessages}
                                                  messages={messages}
-                                                 userActive={userActive} />
-                : <div className={'chooseDialog'}><h3>Select a chat to start messaging</h3></div> }
+                                                 userActive={userActive}/>
+                : <div className={'chooseDialog'}><h3>Select a chat to start messaging</h3></div>}
         </div>
     );
 }

@@ -6,10 +6,6 @@ import moment from "moment-timezone";
 import onlineStatusImg from "../../../images/onlineStatus.png";
 
 const ChatsWindowComponent = (props) => {
-    console.log(props)
-    const chatsList = () => {
-
-    }
     const [term, setTerm] = useState('');
     const bodyChats = useRef(null);
     const scrolls = () => {
@@ -28,14 +24,8 @@ const ChatsWindowComponent = (props) => {
     const items = props.users.map((el, i) => {
         const lastMessage = el.messages.slice(-1)[0];
         const formatDate = (mss) => {
-            const dateMessage = moment(mss).format("MMM DD, YYYY");
-            const days = moment(mss).format("D");
-            const hours = moment(mss).format("H");
-            const minutes = moment(mss).format("mm");
-            const seconds = moment(mss).format("ss");
             const timeMessage = moment(mss).format("MMM DD, YYYY")
-
-            return {days, hours, minutes, seconds, dateMessage, timeMessage}
+            return { timeMessage}
         }
         const lastMessageText = lastMessage.text.length > 70 ? `${lastMessage.text.slice(0, 70)}...` : lastMessage.text;
         const  {timeMessage} = formatDate(lastMessage.date)

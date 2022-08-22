@@ -13,19 +13,13 @@ const DialogWindowComponent = (props) => {
     const scroll = () => {
     bodyMessages.current.scrollIntoView({behavior: "smooth"} );
     }
-    console.log('render')
     useEffect(() => {
         scroll();
     })
     const messagesElements = messages.map((m, i) => {
         const formatDate = (mss) => {
-            const dateMessage = moment(mss).format("DD.MM.YYYY");
-            const days = moment(mss).format("D");
-            const hours = moment(mss).format("H");
-            const minutes = moment(mss).format("mm");
-            const seconds = moment(mss).format("ss");
             const timeMessage = moment(mss).format("M/DD/YYYY, H:mm A");
-            return {days, hours, minutes, seconds, dateMessage, timeMessage}
+            return {timeMessage}
         }
         const  {timeMessage} = formatDate(m.date)
         return <MessageItemComponent key={i}

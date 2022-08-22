@@ -8,7 +8,6 @@ import moment from "moment-timezone";
 
 const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) => {
     const [inputValue, setInputValue] = useState('');
-
     const {request} = useHttp();
 
     const handleChange = (e) => {
@@ -20,7 +19,6 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
         const newMessage = {
             messageId: nanoid(),
             date: Number(moment().tz("Europe/Istanbul").format('x')),
-            //time: timeMessage,
             text: inputValue,
             isRead: true,
             isIncoming: false
@@ -30,14 +28,12 @@ const InputMessageComponent = ({messages, updateMesseges, updateGetMessages}) =>
         setTimeout(() => {
             request("https://api.chucknorris.io/jokes/random")
                 .then(data => {
-                        getMessage(data.value, newMessage)
+                    getMessage(data.value, newMessage)
                 })
-        }, 1000);
+        }, 10000);
 
     }
     const sendMessage = (message) => {
-        console.log('Отправленное sms: ' + inputValue);
-        console.log(message);
         updateMesseges(message);
     }
 

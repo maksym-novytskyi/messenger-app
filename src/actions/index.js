@@ -16,13 +16,3 @@ export const usersUpdated = (users) => {
         payload: users
     }
 }
-
-export const addNewMessage = (id, message) => {
-    return {
-        type: 'ADD_NEW_MESSAGE',
-        payload: {
-            id,
-            message
-        }
-    }
-}

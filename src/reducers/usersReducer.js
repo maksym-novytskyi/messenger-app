@@ -1,13 +1,10 @@
 const initialState = {
-    users: [],
-    getMessage: []
+    users: []
 }
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_NEW_MESSAGE':
-            /* const user = state.users.find(el => el.action.id);
-             user.messages*/
             return {
                 ...state,
                 messages: [...state.messages, action.payload]

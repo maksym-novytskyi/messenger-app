@@ -1,7 +1,7 @@
 import './MessageItemComponent.scss'
 
 const MessageItemComponent = (props) => {
-    const {date, time, messageText, userImg, incomingStatus} = props;
+    const {time, messageText, userImg, incomingStatus} = props;
     const incomingClass = 'messageItemComponent__position-left';
     const outgoingClass = 'messageItemComponent__position-right';
     const messageClass = incomingStatus ? incomingClass : outgoingClass;
